@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 title: envTrack
 description: Advanced command execution and configuration management for VS Code
+logo: /assets/icon.svg
