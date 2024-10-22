@@ -15,6 +15,7 @@
       1. [Configuration and Parameters](#Configuration-and-Parameters)
       1. [Session-Specific Configurations](#Session-Specific-Configurations)
       1. [Template Usage](#Template-Usage)
+      1. [Subcommands](#Subcommands)
    4. [Configs](#configs)
    5. [Command Templates](#command-templates)
    6. [Observable Commands](#observable-commands)
@@ -254,6 +255,58 @@ The commands section in the configuration file allows you to define a key value 
 #### Template Usage
 
 - `template`: Optional template name that this command is based on.
+
+#### Subcommands
+
+Commands can include subcommands, which are executed before the main command. This feature allows for creating complex command structures and workflows.
+
+Key aspects of subcommands:
+
+1. **Definition**: Subcommands are defined within a command using the `subCommands` key, which contains an array of subcommand definitions.
+
+2. **Structure**: Each subcommand is defined with the following properties:
+   - `commandName`: The name of the existing command to be executed as a subcommand.
+   - `params` (optional): Parameters specific to this subcommand execution.
+   - `configMap` (optional): Configuration map specific to this subcommand execution.
+   - `session` (optional): Session information for this subcommand.
+
+3. **Execution Order**: Subcommands are executed in the order they are listed, before the main command.
+
+4. **Parameter and Config Inheritance**: Subcommands inherit and can override parameters and configurations:
+   - Original command <- Subcommand definition <- Individual subcommand entry
+
+Example:
+
+```yaml
+Subcommand Command:
+  command: echo "Started group"
+  params:
+    a: b
+  configMap:
+    cnf: cool
+  subCommands:
+    - commandName: Test:Echo config map
+    - commandName: Test:Echo config map
+      configMap:
+        cnf: bar
+    - commandName: Test:Echo var
+    - commandName: Test:Echo var
+      params:
+        echo: bar
+    - commandName: Test:Echo
+    - commandName: Inherit:1
+      session:
+      params:
+      configMap:
+```
+
+In this example:
+
+- The main command "Subcommand Command" will be executed after all subcommands.
+- Subcommands like "Test:Echo config map" will be executed with inherited and potentially overridden parameters and configurations.
+- The last subcommand "Inherit:1" demonstrates how session, params, and configMap can be explicitly set or cleared for a specific subcommand.
+
+This subcommand feature enables the creation of complex command sequences and allows for fine-grained control over parameter and configuration inheritance within command groups.
 
 ### Configs
 
