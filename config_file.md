@@ -269,6 +269,7 @@ The `configs` section in the configuration file allows you to define external co
 5. **Dynamic Configuration**: This feature allows for environment-specific settings to be easily swapped by changing the referenced config file.
 
 > Example usage:
+
 ```yaml
 configs:
   staging-fe:
@@ -312,6 +313,7 @@ Configs can be dynamically used in combination with sessions and config maps to 
 3. **Variable Resolution**: Config variables are resolved at runtime, allowing for dynamic configuration based on the selected session.
 
 > Example usage:
+
 ```yaml
 commands:
   Deploy:Frontend:
@@ -372,6 +374,7 @@ Key aspects of Command Templates:
 6. **Flexibility**: Templates can define partial command configurations, which can be completed or modified by the inheriting commands.
 
 > Example of a Command Template:
+
 ```yaml
 DB:Gen Connection String URL:
   command: |-
@@ -393,6 +396,7 @@ DB:Gen Connection String URL:
 ```
 
 > Usage in a Command:
+
 ```yaml
 commands:
   Generate:DB:URL:
@@ -429,6 +433,7 @@ The Observable Commands feature allows you to specify a list of commands that ca
 5. **Interaction**: From the quick pick menu, you can start or stop Observable Commands directly, providing easy control over these important processes.
 
 > Example configuration:
+
 ```yaml
 observableCommands:
   - Deploy:Frontend
@@ -465,6 +470,7 @@ autostart:
    - If autoSelectDefaultSession is set to true for the command, it will use the defaultSession without prompting.
 
 > Example
+
 ```yaml
 autostart:
   Deploy:Frontend: staging
