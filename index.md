@@ -4,6 +4,7 @@ Welcome to envTrack, a powerful Visual Studio Code extension that enhances your 
 
 ## Key Features
 
+- [Configuration file](config_file.md)
 - [Command Management](features/command-management.md)
 - [Configuration and Settings](features/configuration-settings.md)
 - [View Modes and Navigation](features/view-modes-navigation.md)
