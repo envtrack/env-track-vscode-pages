@@ -241,6 +241,7 @@ The commands section in the configuration file allows you to define a key value 
 
 - `autocloseCommand`: Boolean flag. If true, the terminal will close as soon as the command is done (planned feature).
 - `importFrom`: An array of commands to import parameters, configuration maps, or sessions from.
+- `skipTerminalAutofocus`: Boolean flag. If true, the terminal or background logs will not automatically gain focus when the command starts.
 
 #### Configuration and Parameters
 
