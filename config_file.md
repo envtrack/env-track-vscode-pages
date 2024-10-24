@@ -242,6 +242,7 @@ The commands section in the configuration file allows you to define a key value 
 - `autocloseCommand`: Boolean flag. If true, the terminal will close as soon as the command is done (planned feature).
 - `importFrom`: An array of commands to import parameters, configuration maps, or sessions from.
 - `skipTerminalAutofocus`: Boolean flag. If true, the terminal or background logs will not automatically gain focus when the command starts.
+- `enableLog`: Boolean flag. If true, command output will be saved to log files in the configured log directory.
 
 #### Configuration and Parameters
 
@@ -550,6 +551,49 @@ In this example:
 By utilizing the Autostart feature, you can significantly streamline your development workflow and ensure that critical processes are initialized consistently across your team or deployment environments.
 
 ## Advanced Features
+
+## Logging Configuration
+
+The extension supports comprehensive logging capabilities for command outputs:
+
+### Command-Level Logging
+
+> NOTE: This feature is NOT available for background commands. Use outputs tab for background commands.
+
+Enable logging for specific commands by setting the `enableLog` flag in the command configuration:
+
+```yaml
+commands:
+  Deploy:Frontend:
+    enableLog: true
+    command: npm run deploy
+```
+
+### Log Storage Configuration
+
+Logs are stored in one of two locations:
+
+1. Custom log directory specified in VSCode settings:
+   - Configure logFolder in VSCode settings to specify a custom log directory
+
+> Example:
+
+```json
+"envTrack.logFolder": "./my-custom-logs"
+```
+
+#### Default location:
+
+If no custom location is specified, logs are stored in .vscode/logs
+
+### Log Access
+
+Command logs can be accessed through:
+
+- The Running Commands tree view in the sidebar
+- Each command execution creates a separate log file
+- Log files are named based on the command execution timestamp
+
 (To be expanded)
 
 ## Best Practices
