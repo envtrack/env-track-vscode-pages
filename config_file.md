@@ -243,6 +243,21 @@ The commands section in the configuration file allows you to define a key value 
 - `importFrom`: An array of commands to import parameters, configuration maps, or sessions from.
 - `skipTerminalAutofocus`: Boolean flag. If true, the terminal or background logs will not automatically gain focus when the command starts.
 - `enableLog`: Boolean flag. If true, command output will be saved to log files in the configured log directory.
+- `informationalCommandSettings`: Configure settings for informational commands
+  - `fileWatcher`: Array of file patterns to watch for changes. When matching files are created or modified, the command automatically re-executes.
+
+> Example:
+
+```yaml
+commands:
+  System:Status:
+    isInformational: true
+    command: systemctl status myservice
+    informationalCommandSettings:
+      fileWatcher:
+        - "**/status/*.log"
+        - "**/health/*.json"
+```
 
 #### Configuration and Parameters
 
