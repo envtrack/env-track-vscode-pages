@@ -218,7 +218,11 @@ The commands section in the configuration file allows you to define a key value 
 #### Execution Settings
 
 - **background**: Boolean flag. If set to true, the command will run in the background.
-- **shell**: Specifies the shell or runtime environment for executing the command. If set to "`bash`", it will start bash with your profile (`bash -l -c`).
+- **shell**: Specifies the shell or runtime environment for executing the command. Supports:
+  - `"bash"`: Starts bash with your profile (`bash -l -c`)
+  - `"vscode"`: Uses VS Code integrated terminal
+  - `"external"`: Uses system default or custom external terminal
+- **externalShellLocation**: When using external shells, specifies a custom terminal location
 - **forceEnv**: Boolean flag. If true, the command will not run without selecting a session.
 - **command**: The actual command string to be executed.
 - **killCmd**: A command to run before starting your command (will be renamed in future versions).
