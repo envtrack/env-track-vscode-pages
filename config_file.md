@@ -273,6 +273,9 @@ commands:
 - `enableLog`: Boolean flag. If true, command output will be saved to log files in the configured log directory.
 - `informationalCommandSettings`: Configure settings for informational commands
   - `fileWatcher`: Array of file patterns to watch for changes. When matching files are created or modified, the command automatically re-executes.
+  - `interval`: The interval in seconds for refreshing the command.
+  - `commandTrigger`: Watch for triggers of the command to re-execute.
+  - `order`: The order in which the command should be shown in the UI.
 
 > Example:
 
