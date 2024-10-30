@@ -215,6 +215,30 @@ The commands section in the configuration file allows you to define a key value 
    * School
       * 1 (> run)
 
+#### Command Display
+
+- **color**: Customize the command's display color in the command tree. Available colors:
+  - `red`: Error foreground color
+  - `green`: Test passed color
+  - `blue`: Debug start color
+  - `yellow`: Warning color
+  - `orange`: Warning notification color
+  - `purple`: Text link color
+  - `gray`: Description text color
+
+> Example:
+
+```yaml
+commands:
+  Deploy:Frontend:
+    color: green
+    command: npm run deploy
+
+  Database:Backup:
+    color: orange
+    command: pg_dump -U ${DB_USER}
+```
+
 #### Execution Settings
 
 - **background**: Boolean flag. If set to true, the command will run in the background.
