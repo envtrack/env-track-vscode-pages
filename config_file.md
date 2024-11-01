@@ -269,6 +269,7 @@ commands:
 
 - `autocloseCommand`: Boolean flag. If true, the terminal will close as soon as the command is done (planned feature).
 - `importFrom`: An array of commands to import parameters, configuration maps, or sessions from.
+- `extend`: Extend the command with additional settings from another command. All fields will be loaded from the extended command and overwritten by the current command.
 - `skipTerminalAutofocus`: Boolean flag. If true, the terminal or background logs will not automatically gain focus when the command starts.
 - `enableLog`: Boolean flag. If true, command output will be saved to log files in the configured log directory.
 - `informationalCommandSettings`: Configure settings for informational commands
@@ -295,6 +296,38 @@ commands:
 - `configMap`: Allows the use of dynamic config files. Values can be referenced in the command or params.
 - `params`: Defines parameters for the command. Supports simple values and complex references using configs.
 - `requiredParams`: List of parameters that must be provided for the command to execute.
+
+#### Parameter Options
+
+The `paramOptions` field allows you to define metadata and validation rules for command parameters:
+
+```yaml
+commands:
+  Deploy:App:
+    command: deploy.sh --env ${environment} --mode ${mode} --debug ${enableDebug}
+    paramOptions:
+      environment:
+        type: enum
+        description: Target deployment environment
+        enumValues: ['dev', 'staging', 'prod']
+        required: true
+      mode:
+        type: string
+        description: Deployment mode
+        default: 'standard'
+      enableDebug:
+        type: boolean
+        description: Enable debug logging
+        default: false
+```
+
+Supported options for each parameter:
+
+- type: Defines the parameter type ('string' | 'number' | 'boolean' | 'enum')
+- description: Optional description of the parameter's purpose
+- enumValues: Array of allowed values (only for enum type)
+- default: Default value if parameter is not provided
+- required: If true, parameter must be specified before command execution
 
 #### Session-Specific Configurations
 
